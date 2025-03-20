@@ -12,6 +12,7 @@
     "pretty": "prettier --write ."
   },
   "dependencies": {
+    "antd": "^5.24.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
