@@ -1,0 +1,8 @@
+.movie-app-list {
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  max-width: 1147px;
+  flex-wrap: wrap;
+}

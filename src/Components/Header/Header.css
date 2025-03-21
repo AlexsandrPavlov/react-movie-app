@@ -1,9 +1,10 @@
 .header-app {
-  margin: 0 10px;
+  margin: 0 auto;
+  max-width: 938px;
 }
 .header-app-menu {
   display: flex;
   justify-content: center;
   border-bottom: none;
-  margin-bottom: 10px;
+  padding-bottom: 10px;
 }
