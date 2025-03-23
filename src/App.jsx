@@ -1,14 +1,17 @@
+import React from 'react';
+
 import './App.css';
-import CardList from './Components/CardsList/CardList';
-import Footer from './Components/Footer/Footer';
-import Header from './Components/Header/Header';
+import Header from './Components/ui-components/Header/Header';
+
+import SearchCards from './Components/app/SearchCards/SearchCard';
+import Footer from './Components/ui-components/Footer/Footer';
 
 export default function App() {
   return (
-    <div>
+    <>
       <Header />
-      <CardList />
+      <SearchCards />
       <Footer />
-    </div>
+    </>
   );
 }

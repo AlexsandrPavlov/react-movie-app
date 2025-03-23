@@ -1,0 +1,16 @@
+.header-app {
+  margin: 0 auto;
+  max-width: 1010px;
+  padding: 10px;
+}
+.header-app-menu {
+  justify-content: center;
+  display: flex;
+  border-bottom: none;
+  padding-bottom: 10px;
+}
+.header-app-search {
+  display: flex;
+  max-width: 938px;
+  margin: 0 auto;
+}
