@@ -7,26 +7,30 @@ import {ReleaseDate} from '../ReleaseDate/ReleaseDate';
 import {Description} from '../Discripitions/Discriptions';
 import {StarRate} from '../StarRate/StarRate';
 import {TagGenre} from '../TagGenre/TagGenre';
+import {IMAGE_BASE_URL} from '../../api/config/api.config';
+import notFound from './notFound.jpg';
 
 const MovieCard = (props) => {
   const {
-    title = 'The Way Back',
-    rating = 5,
-    releaseDate = ' March 5 , 2025',
-    description = ' A former basketball all-star, who has lost his wife and family foundation in a struggle with addiction attempts to regain his soul  and salvation by becoming the coach of a disparate ethnically mixed high ... A former basketball all-star, who has lost his wife and family foundation in a struggle with addiction attempts to regain his soul  and salvation by becoming the coach of a disparate ethnically mixed high ...',
-    genre = 'conedy',
+    item,
+    genre,
+    title = item.title,
+    rating = item.vote_average,
+    releaseDate = item.release_date,
+    description = item.overview,
+    poster = item.poster_path,
   } = props;
   return (
     <div className="movi-card">
       <div className="card-wrapper">
         <div className="img-pc">
-          <Image width={183} height={279} src="src/Components/ui-components/MovieCard/poster.jpg" />
+          <Image width={183} height={279} src={poster ? `${IMAGE_BASE_URL}${poster}` : notFound} />
         </div>
 
         <div className="about-film">
           <div className="title-block">
             <div className="img-mobile">
-              <Image width={60} height={91} src="src/Components/ui-components/MovieCard/poster.jpg" />
+              <Image width={60} height={91} src={poster ? `${IMAGE_BASE_URL}${poster}` : notFound} />
             </div>
             <div className="title-pc">
               <TitleCard title={title} />

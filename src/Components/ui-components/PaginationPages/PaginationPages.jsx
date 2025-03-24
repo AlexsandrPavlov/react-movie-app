@@ -1,27 +1,20 @@
 import {Pagination} from 'antd';
-import {useState, useEffect} from 'react';
 import './PaginationPage.css';
 
 export const PaginationPages = (props) => {
-  const {contentPage, setContentPage = Function.prototype, totalPages} = props;
+  const {contentPage, setContentPage, totalPages} = props;
 
-  const [page, setPage] = useState(contentPage);
-
-  const changePage = (e) => {
-    setPage(e);
-  };
-
-  useEffect(() => {
+  const changePage = (page) => {
     setContentPage(page);
-  }, [setContentPage, page]);
+  };
 
   return (
     <Pagination
       className="pagination"
       current={contentPage}
-      onChange={(e) => changePage(e)}
-      total={totalPages}
-      pageSize={1}
+      onChange={changePage}
+      total={totalPages * 6}
+      pageSize={6}
       showSizeChanger={false}
     />
   );

@@ -8,7 +8,7 @@ export const SearchFilm = (props) => {
 
   const handleChange = (e) => {
     e.preventDefault();
-    setValue(e.target.value);
+    setValue(e.target.value.trim());
   };
 
   useEffect(() => {

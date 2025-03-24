@@ -6,13 +6,13 @@ import Footer from './Components/app/Footer/Footer';
 import Header from './Components/app/Header/Header';
 
 export default function App() {
-  const [query, setQuery] = useState('The Way');
+  const [query, setQuery] = useState('');
   const [menuPage, setMenuPage] = useState('search');
 
   return (
     <>
       <Header menuPage={menuPage} setMenuPage={setMenuPage} query={query} setQuery={setQuery} />
-      <SearchCards />
+      <SearchCards query={query} />
       <Footer />
     </>
   );

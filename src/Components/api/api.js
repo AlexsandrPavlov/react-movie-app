@@ -16,8 +16,15 @@ class MovieService {
     }
     return await res.json();
   }
-  async getMovieSearch(query = 'The Way', page = 1) {
-    const res = await fetch(`${API_URL}?query=${query}}&include_adult=false&language=en-US&page=${page}`, options);
+  async getMovieSearch(query, page) {
+    const res = await fetch(`${API_URL}?query=${query}&include_adult=false&language=en-US&page=${page}`, options);
+    if (!res.ok) {
+      throw new Error(`Error code : ${res.status}`);
+    }
+    return await res.json();
+  }
+  async getTrendingMovies(page) {
+    const res = await fetch(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=${page}`, options);
     if (!res.ok) {
       throw new Error(`Error code : ${res.status}`);
     }
