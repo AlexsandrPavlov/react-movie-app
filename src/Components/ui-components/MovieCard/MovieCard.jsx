@@ -1,72 +1,75 @@
 import {React} from 'react';
 
-import {Card, Image, ConfigProvider, Typography, Progress, Rate, Flex, Tag} from 'antd';
+import {Image} from 'antd';
 import './MovieCard.css';
+import {TitleCard} from '../TitleCard/TitleCard';
+import {ReleaseDate} from '../ReleaseDate/ReleaseDate';
+import {Description} from '../Discripitions/Discriptions';
+import {StarRate} from '../StarRate/StarRate';
+import {TagGenre} from '../TagGenre/TagGenre';
 
-const {Title, Text, Paragraph} = Typography;
-
-const MovieCard = () => {
+const MovieCard = (props) => {
+  const {
+    title = 'The Way Back',
+    rating = 5,
+    releaseDate = ' March 5 , 2025',
+    description = ' A former basketball all-star, who has lost his wife and family foundation in a struggle with addiction attempts to regain his soul  and salvation by becoming the coach of a disparate ethnically mixed high ... A former basketball all-star, who has lost his wife and family foundation in a struggle with addiction attempts to regain his soul  and salvation by becoming the coach of a disparate ethnically mixed high ...',
+    genre = 'conedy',
+  } = props;
   return (
-    <ConfigProvider
-      theme={{
-        components: {
-          Card: {bodyPadding: 0, boxShadowTertiary: '0px 4px 12px 0px rgba(0, 0, 0, 0.15)'},
-          Rate: {starSize: 17},
-          Progress: {colorSuccess: 'Black'},
-          Typography: {titleMarginBottom: 0},
-        },
-      }}
-    >
-      <Card
-        className="movi-card"
-        variant="borderless"
-        style={{
-          width: 451,
-          height: 279,
-          padding: 0,
-          margin: 0,
-          borderRadius: 0,
-        }}
-      >
-        <Flex>
+    <div className="movi-card">
+      <div className="card-wrapper">
+        <div className="img-pc">
           <Image width={183} height={279} src="src/Components/ui-components/MovieCard/poster.jpg" />
+        </div>
 
-          <Flex vertical style={{padding: 15, width: 298}}>
-            <Flex justify="space-between" align="center">
-              <Title style={{margin: 0}} level={5} className="movie-name">
-                The Way Back
-              </Title>
-              <Progress size={30} strokeColor={'rgba(233, 209, 0, 1)'} type="circle" percent={100} format={() => 6.6} />
-            </Flex>
-            <Text type="secondary">5 March, 2020</Text>
-            <Flex>
-              <Tag>Action</Tag>
-              <Tag>Drama</Tag>
-              <Tag>Comedy</Tag>
-            </Flex>
+        <div className="about-film">
+          <div className="title-block">
+            <div className="img-mobile">
+              <Image width={60} height={91} src="src/Components/ui-components/MovieCard/poster.jpg" />
+            </div>
+            <div className="title-pc">
+              <TitleCard title={title} />
+            </div>
 
-            <Paragraph
+            <div className="mobile-block">
+              <TitleCard title={title} />
+              <ReleaseDate releaseDate={releaseDate} />
+              <div className="genre-mobile">
+                <TagGenre genre={genre} />
+              </div>
+            </div>
+
+            <span
+              className="title-raiting"
               style={{
-                paddingTop: 10,
-                width: 228,
-                height: 159,
-                marginBottom: 0,
+                border: `2px solid ${
+                  rating < 3
+                    ? '#e90000'
+                    : rating > 3 && rating < 5
+                      ? '#e97E00'
+                      : rating >= 5 && rating <= 7
+                        ? '#e9D100'
+                        : '#66E900'
+                }`,
               }}
             >
-              A former basketball all-star, who has lost his wife and family foundation in a struggle with addiction
-              attempts to regain his soul and salvation by becoming the coach of a disparate ethnically mixed high A
-            </Paragraph>
-            <Rate
-              style={{
-                paddingTop: 5,
-              }}
-              allowHalf
-              count={10}
-            />
-          </Flex>
-        </Flex>
-      </Card>
-    </ConfigProvider>
+              {rating.toFixed(1)}
+            </span>
+          </div>
+          <div className="pc-block">
+            <ReleaseDate releaseDate={releaseDate} />
+            <div className="genre">
+              <TagGenre genre={genre} />
+            </div>
+          </div>
+
+          <Description text={description || 'No description'} />
+
+          <StarRate />
+        </div>
+      </div>
+    </div>
   );
 };
 

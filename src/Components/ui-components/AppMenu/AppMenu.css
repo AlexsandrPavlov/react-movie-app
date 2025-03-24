@@ -1,0 +1,6 @@
+.header-app-menu {
+  justify-content: center;
+  display: flex;
+  border-bottom: none;
+  padding-bottom: 10px;
+}

@@ -1,0 +1,11 @@
+.star-rait {
+  padding-bottom: 10px;
+  font-size: 17px;
+  display: flex;
+}
+@media (max-width: 480px) {
+  .star-rait {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

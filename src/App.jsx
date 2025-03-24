@@ -1,15 +1,17 @@
-import React from 'react';
+import {useState} from 'react';
 
 import './App.css';
-import Header from './Components/ui-components/Header/Header';
-
 import SearchCards from './Components/app/SearchCards/SearchCard';
-import Footer from './Components/ui-components/Footer/Footer';
+import Footer from './Components/app/Footer/Footer';
+import Header from './Components/app/Header/Header';
 
 export default function App() {
+  const [query, setQuery] = useState('The Way');
+  const [menuPage, setMenuPage] = useState('search');
+
   return (
     <>
-      <Header />
+      <Header menuPage={menuPage} setMenuPage={setMenuPage} query={query} setQuery={setQuery} />
       <SearchCards />
       <Footer />
     </>
