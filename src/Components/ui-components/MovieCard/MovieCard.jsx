@@ -1,4 +1,4 @@
-import {React} from 'react';
+import {React, useContext} from 'react';
 
 import {Image} from 'antd';
 import './MovieCard.css';
@@ -9,17 +9,25 @@ import {StarRate} from '../StarRate/StarRate';
 import {TagGenre} from '../TagGenre/TagGenre';
 import {IMAGE_BASE_URL} from '../../api/config/api.config';
 import notFound from './notFound.jpg';
+import {GenresContext} from '../../utils/GenreContext';
+import {genresSlice} from '../../utils/GenreSlice';
 
 const MovieCard = (props) => {
   const {
     item,
-    genre,
+    id,
     title = item.title,
     rating = item.vote_average,
     releaseDate = item.release_date,
     description = item.overview,
     poster = item.poster_path,
+    genresIds = item.genre_ids || item.genres,
   } = props;
+
+  const {genres} = useContext(GenresContext);
+
+  const filmGenres = genresSlice(genresIds);
+
   return (
     <div className="movi-card">
       <div className="card-wrapper">
@@ -39,8 +47,10 @@ const MovieCard = (props) => {
             <div className="mobile-block">
               <TitleCard title={title} />
               <ReleaseDate releaseDate={releaseDate} />
-              <div className="genre-mobile">
-                <TagGenre genre={genre} />
+              <div className="genre">
+                {genres?.map((item) => {
+                  return filmGenres.includes(item.id) && <TagGenre key={item.id} genre={item.name} />;
+                })}
               </div>
             </div>
 
@@ -64,13 +74,15 @@ const MovieCard = (props) => {
           <div className="pc-block">
             <ReleaseDate releaseDate={releaseDate} />
             <div className="genre">
-              <TagGenre genre={genre} />
+              {genres?.map((item) => {
+                return filmGenres.includes(item.id) && <TagGenre key={item.id} genre={item.name} />;
+              })}
             </div>
           </div>
 
           <Description text={description || 'No description'} />
 
-          <StarRate />
+          <StarRate id={id} />
         </div>
       </div>
     </div>
