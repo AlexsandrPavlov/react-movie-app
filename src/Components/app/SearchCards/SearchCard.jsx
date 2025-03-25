@@ -15,12 +15,16 @@ const SearchCards = (props) => {
   const itemsPerPage = 6;
   const [initialFetchDone, setInitialFetchDone] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
   const message = 'Nothing found!';
   const type = 'warning';
+  const errorVPN = 'You need VPN, check your console browser';
 
   useEffect(() => {
     const requestSearchFilms = debounce(async () => {
       setLoading(true);
+      setError(false);
 
       try {
         if (!query && !initialFetchDone) {
@@ -31,8 +35,9 @@ const SearchCards = (props) => {
           const response = await MovieService.getMovieSearch(query, contentPage);
           setSearchFilms(response);
         }
-      } catch (err) {
-        console.error('Faild to downoload', err);
+      } catch (e) {
+        console.error(e);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -54,8 +59,8 @@ const SearchCards = (props) => {
     <>
       {loading ? (
         <Loader />
-      ) : searchFilms.results && searchFilms.results.length === 0 ? (
-        <ErrAlert message={message} type={type} />
+      ) : (searchFilms.results && searchFilms.results.length === 0) || error ? (
+        <ErrAlert message={error ? errorVPN : message} type={type} />
       ) : (
         <>
           <ul className="movie-list">
