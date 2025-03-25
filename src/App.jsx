@@ -1,8 +1,7 @@
 import {useState} from 'react';
 
 import './App.css';
-import SearchCards from './Components/app/SearchCards/SearchCard';
-import Footer from './Components/app/Footer/Footer';
+import {Screen} from './Components/app/Screen';
 import Header from './Components/app/Header/Header';
 
 export default function App() {
@@ -12,8 +11,7 @@ export default function App() {
   return (
     <>
       <Header menuPage={menuPage} setMenuPage={setMenuPage} query={query} setQuery={setQuery} />
-      <SearchCards query={query} />
-      <Footer />
+      <Screen menuPage={menuPage} query={query} />
     </>
   );
 }

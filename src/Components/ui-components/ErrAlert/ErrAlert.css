@@ -1,0 +1,10 @@
+.alert-banner {
+  max-width: 938px;
+  margin: 0 auto;
+}
+
+@media (max-width: 480px) {
+  .alert-banner {
+    padding: 10px;
+  }
+}

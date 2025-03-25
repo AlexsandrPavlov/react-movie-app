@@ -1,5 +1,3 @@
-import {Menu} from 'antd';
-
 import './Header.css';
 import {SearchFilm} from '../../ui-components/SearchFilm/SearchFilm';
 import {AppMenu} from '../../ui-components/AppMenu/AppMenu';
