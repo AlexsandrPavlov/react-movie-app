@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 
+import {debounce} from 'lodash';
 import {PaginationPages} from '../../ui-components/PaginationPages/PaginationPages';
 import MovieCard from '../../ui-components/MovieCard/MovieCard';
 import './SearchCard.css';
@@ -18,7 +19,7 @@ const SearchCards = (props) => {
   const type = 'warning';
 
   useEffect(() => {
-    const requestSearchFilms = async () => {
+    const requestSearchFilms = debounce(async () => {
       setLoading(true);
 
       try {
@@ -31,13 +32,17 @@ const SearchCards = (props) => {
           setSearchFilms(response);
         }
       } catch (err) {
-        console.error('Ошибка получения данных:', err);
+        console.error('Faild to downoload', err);
       } finally {
         setLoading(false);
       }
-    };
+    }, 600);
 
     requestSearchFilms();
+
+    return () => {
+      requestSearchFilms.cancel();
+    };
   }, [query, contentPage, initialFetchDone]);
 
   const startIndex = (contentPage - 1) * itemsPerPage;
@@ -49,7 +54,7 @@ const SearchCards = (props) => {
     <>
       {loading ? (
         <Loader />
-      ) : searchFilms.results && searchFilms.results.length === 0 ? ( // Проверка на пустой массив
+      ) : searchFilms.results && searchFilms.results.length === 0 ? (
         <ErrAlert message={message} type={type} />
       ) : (
         <>
