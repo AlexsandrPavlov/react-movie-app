@@ -15,13 +15,14 @@ import {genresSlice} from '../../utils/GenreSlice';
 const MovieCard = (props) => {
   const {
     item,
-    id,
+    id = item.id,
     title = item.title,
     rating = item.vote_average,
     releaseDate = item.release_date,
     description = item.overview,
     poster = item.poster_path,
     genresIds = item.genre_ids || item.genres,
+    youRaitng = item.rating,
   } = props;
 
   const {genres} = useContext(GenresContext);
@@ -82,7 +83,7 @@ const MovieCard = (props) => {
 
           <Description text={description || 'No description'} />
 
-          <StarRate id={id} />
+          <StarRate id={id} youRating={youRaitng} />
         </div>
       </div>
     </div>
