@@ -17,7 +17,7 @@ const RatedCards = (props) => {
 
   const message = 'Nothing found!';
   const type = 'warning';
-  const errorVPN = 'You need VPN, check your console browser';
+  const errorVPN = 'Вы не ставили оценки';
 
   useEffect(() => {
     const requestFilms = async () => {
